@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/CubeScript.cs" />
+    <Compile Include="Assets/Scripts/GameManager.cs" />
+    <Compile Include="Assets/Scripts/GameOverArea.cs" />
+    <Compile Include="Assets/Scripts/GoalArea.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/TestScript.cs" />
     <Compile Include="Assets/Scripts/TestScript2.cs" />

@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    //　ゲームマネージャー
+    private GameManager gameManager;
+    //　キャラクターを操作可能かどうか
+    private bool canControl;
     //　Rigidbodyコンポーネント
     private Rigidbody rigidBody;
     //　キャラクターのコライダ
@@ -28,14 +31,34 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         rigidBody = GetComponent<Rigidbody>();
         myCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
+
+        canControl = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //　操作不可能の時は以降何もしない
+        if (!canControl)
+        {
+            return;
+        }
+        //　ゲームオーバー時はリセットしそれ以降は何もしない
+        if (gameManager.GameOver)
+        {
+            velocity = Vector3.zero;
+            animator.SetFloat("Speed", 0f);
+            rigidBody.isKinematic = true;
+            canControl = false;
+            return;
+        }
+
         //　設置確認
         CheckGround();
         // 移動速度の計算
