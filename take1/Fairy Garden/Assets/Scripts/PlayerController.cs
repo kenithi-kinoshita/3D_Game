@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         //　GroundまたはEnemyレイヤーと球のコライダがぶつかった場合は地面に接地
-        if (Physics.CheckSphere(rigidBody.position, myCollider.radius - 0.1f, LayerMask.GetMask("Ground")))
+        //　↓
+        //　アニメーションパラメーターのRigidbodyのYが0.1以下でGroundまたはEnemyレイヤーと球のコライダがぶつかった場合に接地　”Enemy”を追記
+        if (Physics.CheckSphere(rigidBody.position, myCollider.radius - 0.1f, LayerMask.GetMask("Ground","Enemy")))
         {
             isGrounded = true;
             velocity.y = 0f;
