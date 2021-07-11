@@ -66,10 +66,13 @@
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoRotate.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_LightFlicker.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets/Scripts/BulletScript.cs" />
+    <Compile Include="Assets/Scripts/CannonRotationScript.cs" />
     <Compile Include="Assets/Scripts/CubeScript.cs" />
     <Compile Include="Assets/Scripts/EffectScript.cs" />
     <Compile Include="Assets/Scripts/EnemyController.cs" />
     <Compile Include="Assets/Scripts/EraseObstacle.cs" />
+    <Compile Include="Assets/Scripts/FireBulletScript.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/GameOverArea.cs" />
     <Compile Include="Assets/Scripts/GoalArea.cs" />
