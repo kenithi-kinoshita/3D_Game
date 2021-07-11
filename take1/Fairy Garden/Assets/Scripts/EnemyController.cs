@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
 	private Animator animator;
 	//　キャラクターを操作可能かどうか
 	private bool canControl;
+	[SerializeField]
+	private int attackPower = 2;
+	private PlayerController playerController;
 
 	// Start is called before the first frame update
 	void Start()
@@ -20,6 +23,8 @@ public class EnemyController : MonoBehaviour
 		player = GameObject.Find("Player").transform;
 		animator = GetComponent<Animator>();
 		canControl = true;
+		player = GameObject.Find("Player").transform;
+		playerController = player.GetComponent<PlayerController>();
 	}
 
 	// Update is called once per frame
@@ -63,6 +68,8 @@ public class EnemyController : MonoBehaviour
 			{
 				navMeshAgent.isStopped = true;
 				animator.SetFloat("Speed", 0f);
+				//　プレイヤーに近づいたのでダメージを与える
+				playerController.TakeDamage(attackPower);
 			}
 		}
 	}

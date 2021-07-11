@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 2f;
     //　アニメーションパラメーターを操作する
     private Animator animator;
+    //　プレイヤーのステータスデータ
+    [SerializeField]
+    private PlayerStatus playerStatus;
+    //　ライフゲージ更新スクリプト
+    [SerializeField]
+    private LifeGaugeUpdateScript lifeGaugeUpdateScript;
 
     // Start is called before the first frame update
     void Start()
@@ -137,7 +143,17 @@ public class PlayerController : MonoBehaviour
             rigidBody.MovePosition(rigidBody.position + velocity * Time.fixedDeltaTime);
         }
     }
-
+    //　ダメージ処理
+    public void TakeDamage(int damage)
+    {
+        //　HPを減らす
+        if(playerStatus.SetHP(playerStatus.GetHp() - damage) <= 0)
+        {
+            gameManager.EndGame();
+        }
+        //　ライフゲージを減らす
+        lifeGaugeUpdateScript.UpdateLifeGauge();
+    }
 
 
 }

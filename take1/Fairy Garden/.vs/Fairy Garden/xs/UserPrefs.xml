@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{4C732607-861A-ED87-131A-0F58E548D4B4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EraseBlueObstacle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LifeGaugeUpdateScript.cs">
     <Files>
       <File FileName="Assets/Scripts/EnemyController.cs" Line="28" Column="19" />
       <File FileName="Assets/Scripts/PlayerController.cs" Line="79" Column="10" />
       <File FileName="Assets/Scripts/EffectScript.cs" Line="34" Column="6" />
-      <File FileName="Assets/Scripts/EraseBlueObstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EraseBlueObstacle.cs" Line="22" Column="1" />
+      <File FileName="Assets/Scripts/PlayerStatus.cs" Line="29" Column="1" />
+      <File FileName="Assets/Scripts/LifeGaugeUpdateScript.cs" Line="4" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
