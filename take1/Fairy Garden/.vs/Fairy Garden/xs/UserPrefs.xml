@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{4C732607-861A-ED87-131A-0F58E548D4B4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CannonRotationScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
       <File FileName="Assets/Scripts/CannonRotationScript.cs" Line="34" Column="42" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="29" Column="46" />
-      <File FileName="Assets/Scripts/FireBulletScript.cs" Line="49" Column="22" />
+      <File FileName="Assets/Scripts/FireBulletScript.cs" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="32" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b2f3a826-8c73-4493-a640-2e7f18647e77" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ec4d6aac-2c05-492e-9d50-c928b36d4edc" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

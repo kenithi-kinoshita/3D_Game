@@ -25,6 +25,15 @@ public class PlayerController : MonoBehaviour
     //　移動の速さ
     [SerializeField]
     private float moveSpeed = 2f;
+    //　ジャンプ力
+    [SerializeField]
+    private float jumpPower = 6f;
+    //　2段階目のジャンプ力
+    [SerializeField]
+    private float doubleJumpPower = 5f;
+    //　最初のジャンプをしているかどうか
+    [SerializeField]
+    private bool isFirstJump;
     //　アニメーションパラメーターを操作する
     private Animator animator;
     //　プレイヤーのステータスデータ
@@ -69,6 +78,8 @@ public class PlayerController : MonoBehaviour
         CheckGround();
         // 移動速度の計算
         Move();
+        //　ジャンプ処理
+        Jump();
     }
 
     //　地面のチェック
@@ -78,10 +89,9 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        //　GroundまたはEnemyレイヤーと球のコライダがぶつかった場合は地面に接地
-        //　↓
-        //　アニメーションパラメーターのRigidbodyのYが0.1以下でGroundまたはEnemyレイヤーと球のコライダがぶつかった場合に接地　”Enemy”を追記
-        if (Physics.CheckSphere(rigidBody.position, myCollider.radius - 0.1f, LayerMask.GetMask("Ground","Enemy")))
+       
+        //　アニメーションパラメーターのRigidbodyのYが0.1以下でGroundまたはEnemyレイヤーと球のコライダがぶつかった場合に接地
+        if (animator.GetFloat("JumpPower") <=0.1f && Physics.CheckSphere(rigidBody.position, myCollider.radius - 0.1f, LayerMask.GetMask("Ground","Enemy")))
         {
             isGrounded = true;
             velocity.y = 0f;
@@ -89,8 +99,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
-                }
-
+        }
+        animator.SetBool("IsGrounded", isGrounded);
     }
     //　移動値と向きの計算
     private void Move()
@@ -115,6 +125,33 @@ public class PlayerController : MonoBehaviour
         //　速度の計算
         velocity = new Vector3(input.normalized.x * moveSpeed, 0f, input.normalized.z * moveSpeed);
     }
+    //　ジャンプ処理
+    private void Jump()
+    {
+        //　接地している場合
+        if (isGrounded)
+        {
+            //　ジャンプ処理
+            if (Input.GetButtonDown("Jump"))
+            {
+                isGrounded = false;
+                animator.SetBool("IsGrounded", isGrounded);
+                isFirstJump = true;
+                //velocity.y += jumpPower;
+                //rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y + jumpPower, rigidBody.velocity.z);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpPower, rigidBody.velocity.z);
+                animator.SetTrigger("Jump");
+            }
+            //　ダブルジャンプ
+        } else if (isFirstJump && Input.GetButtonDown("Jump"))
+        {
+            isFirstJump = false;
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, doubleJumpPower, rigidBody.velocity.z);
+        }
+        //　ジャンプ力をアニメーションパラメータに設定
+        animator.SetFloat("JumpPower", rigidBody.velocity.y);
+    }
+
     //　ギズモの表示
     void OnDrawGizmos()
     {
