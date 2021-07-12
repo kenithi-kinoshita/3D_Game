@@ -4,24 +4,38 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
+
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameManagementData gameManagementData;
+    [SerializeField]
+    private PlayerStatus playerStatus;
     //　カウントダウン中かどうか
     public bool IsCountDown { get; set; }
     //　カウントダウン数字を表示するテキスト
     private TextMeshProUGUI countDownText;
     //　ゲームオーバーかどうか
-    public bool GameOver
-    {
-        get; set;
-    }
+    public bool GameOver { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
-        countDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
         //　ゲーム関連初期化
+        GameOver = false;
         IsCountDown = true;
-        StartCoroutine(CountDown());
+
+        if (SceneManager.GetActiveScene().name != "Title")
+        {
+            countDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
+            StartCoroutine(CountDown());
+        }
+        else
+        {
+            //　タイトルシーンの時はステージ番号を1にする
+            gameManagementData.StageNum = 1;
+        }
 
         //　カウントダウン表示
         IEnumerator CountDown()
@@ -41,6 +55,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             countDownText.gameObject.SetActive(false);
         }
+    }
+    public void StartGame()
+    {
+        playerStatus.Reset();
+        SceneManager.LoadScene("Stage1");
     }
 
     // Update is called once per frame
