@@ -67,6 +67,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.IsCountDown)
+        {
+            return;
+        }
         //　操作不可能の時は以降何もしない
         if (!canControl)
         {

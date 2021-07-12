@@ -29,7 +29,7 @@ public class FireBulletScript : MonoBehaviour
     void Update()
     {
         //　ゲームオーバー時は以降何もしない
-        if (gameManager.GameOver)
+        if (gameManager.IsCountDown || gameManager.GameOver)
         {
             return;
         }
