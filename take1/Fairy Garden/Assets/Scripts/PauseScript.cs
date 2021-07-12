@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseScript : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class PauseScript : MonoBehaviour
     [SerializeField]
     private GameObject pauseUI;
 
+    [SerializeField]
+    private PlayerInput playerInput;
+    private InputAction pauseAction;
     // Start is called before the first frame update
     void Start()
     {
+        pauseAction = playerInput.currentActionMap.FindAction("Pause");
         //　スタート時にポーズUIを非表示にする
         pauseUI.SetActive(false);
     }
@@ -19,7 +24,8 @@ public class PauseScript : MonoBehaviour
     void Update()
     {
         //　ポーズボタンを押した時
-        if (Input.GetButtonDown("Pause"))
+        //if (Input.GetButtonDown("Pause"))
+        if (pauseAction.triggered)
         {
             if(Mathf.Approximately(Time.timeScale, 1f))
             {

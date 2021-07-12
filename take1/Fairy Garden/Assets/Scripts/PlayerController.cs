@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 
 
@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LifeGaugeUpdateScript lifeGaugeUpdateScript;
 
+    private PlayerInput playerInput;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +55,10 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         myCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
+
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = playerInput.currentActionMap.FindAction("Move");
+        jumpAction = playerInput.currentActionMap.FindAction("Jump");
 
         canControl = true;
 
@@ -121,7 +129,8 @@ public class PlayerController : MonoBehaviour
             velocity = Vector3.zero;
         }
         //　移動入力値
-        input = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        //input = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        input = new Vector3(moveAction.ReadValue<Vector2>().x, 0f, moveAction.ReadValue<Vector2>().y);
         //　速度の計算
         velocity = new Vector3(input.normalized.x * moveSpeed, 0f, input.normalized.z * moveSpeed);
     }
@@ -132,7 +141,8 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             //　ジャンプ処理
-            if (Input.GetButtonDown("Jump"))
+            //if (Input.GetButtonDown("Jump"))
+            if (jumpAction.triggered)
             {
                 isGrounded = false;
                 animator.SetBool("IsGrounded", isGrounded);
@@ -141,9 +151,12 @@ public class PlayerController : MonoBehaviour
                 //rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y + jumpPower, rigidBody.velocity.z);
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpPower, rigidBody.velocity.z);
                 animator.SetTrigger("Jump");
+
             }
-            //　ダブルジャンプ
-        } else if (isFirstJump && Input.GetButtonDown("Jump"))
+        }
+        //　ダブルジャンプ
+        else if (isFirstJump && jumpAction.triggered)
+        //else if (isFirstJump && Input.GetButtonDown("Jump"))
         {
             isFirstJump = false;
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, doubleJumpPower, rigidBody.velocity.z);
@@ -191,7 +204,5 @@ public class PlayerController : MonoBehaviour
         //　ライフゲージを減らす
         lifeGaugeUpdateScript.UpdateLifeGauge();
     }
-
-
 }
 
