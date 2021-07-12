@@ -77,6 +77,7 @@
     <Compile Include="Assets/Scripts/GameOverArea.cs" />
     <Compile Include="Assets/Scripts/GoalArea.cs" />
     <Compile Include="Assets/Scripts/LifeGaugeUpdateScript.cs" />
+    <Compile Include="Assets/Scripts/PauseScript.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/PlayerStatus.cs" />
     <Compile Include="Assets/Scripts/TestScript.cs" />
