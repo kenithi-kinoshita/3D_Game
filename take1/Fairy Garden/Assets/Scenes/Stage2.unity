@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -2914,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100168, guid: b235179bd2a63d1468dd430670338c55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100170, guid: b235179bd2a63d1468dd430670338c55, type: 3}
       propertyPath: m_Layer
@@ -4905,6 +4905,7 @@ GameObject:
   - component: {fileID: 2067873301}
   - component: {fileID: 2067873300}
   - component: {fileID: 2067873299}
+  - component: {fileID: 2067873302}
   m_Layer: 0
   m_Name: GoalArea
   m_TagString: Untagged
@@ -4988,6 +4989,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067873297}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2067873302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067873297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb39ac2232a034e32ab5db6bec436297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070801294
 GameObject:
   m_ObjectHideFlags: 0
