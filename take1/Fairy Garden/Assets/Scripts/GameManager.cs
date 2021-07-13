@@ -21,31 +21,44 @@ public class GameManager : MonoBehaviour
     //　ゲームオーバー用Canvas
     private Canvas gameOverCanvas;
     //　次のシーンへ移動するボタン
-    private GameObject goToNextButtan;
+    private GameObject goToNextButton;
     // タイトルシーンへ移動するボタン
     private GameObject goToTitleButton;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //　ゲーム関連初期化
-        GameOver = false;
-        IsCountDown = true;
+    //　タイマースクリプト
+    private TimerScript timerScript;
 
-        if (SceneManager.GetActiveScene().name != "Title")
-        {
-            gameOverCanvas = GameObject.Find("GameOver").GetComponent<Canvas>();
-            goToNextButtan = gameOverCanvas.transform.Find("GoToNextButton").gameObject;
-            goToTitleButton = gameOverCanvas.transform.Find("GoToTitleButton").gameObject;
-            gameOverCanvas.enabled = false;
-            countDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
-            StartCoroutine(CountDown());
-        }
-        else
-        {
-            //　タイトルシーンの時はステージ番号を1にする
-            gameManagementData.StageNum = 1;
-        }
+    // Start is called before the first frame update
+    void Start() {
+	//　ゲーム関連初期化
+	GameOver = false;
+	IsCountDown = true;
+ 
+	if (SceneManager.GetActiveScene().name != "Title") {
+		gameOverCanvas = GameObject.Find("GameOver").GetComponent<Canvas>();
+        goToNextButton = gameOverCanvas.transform.Find("GoToNextButton").gameObject;
+		goToTitleButton = gameOverCanvas.transform.Find("GoToTitleButton").gameObject;
+		gameOverCanvas.enabled = false;
+		countDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
+		timerScript = FindObjectOfType<TimerScript>();
+ 
+		/*　PostProcessVolumeの取得
+		postProcessVolume = FindObjectOfType<PostProcessVolume>();
+		if (SceneManager.GetActiveScene().name != "Stage2") {
+			postProcessVolume.profile.GetSetting<DepthOfField>().enabled.Override(true);
+		} else {
+			//　Stage2の時は霧を有効にする
+			RenderSettings.fog = true;
+			RenderSettings.fogDensity = 0.15f;
+			//　試しにPostProcessingStackのDepthOfFieldを無効にしてみる
+			postProcessVolume.profile.GetSetting<DepthOfField>().enabled.Override(false);
+		}*/
+ 
+		StartCoroutine(CountDown());
+	} else {
+		//　タイトルシーンの時はステージ番号を1にする
+		gameManagementData.StageNum = 1;
+	}
 
         //　カウントダウン表示
         IEnumerator CountDown()
@@ -81,6 +94,8 @@ public class GameManager : MonoBehaviour
     //　ゲームクリア時に実行する
     public void ClearGame()
     {
+        //データのセーブ
+        DataProcessingScript.SaveData("Stage" + gameManagementData.StageNum, timerScript.GetSeconds());
         GameOver = true;
         gameManagementData.StageNum++;
         if (gameManagementData.StageNum < SceneManager.sceneCountInBuildSettings)
@@ -89,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            goToNextButtan.SetActive(false);
+            goToNextButton.SetActive(false);
         }
         gameOverCanvas.enabled = true;
     }
@@ -98,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         GameOver = true;
-        goToNextButtan.SetActive(false);
+        goToNextButton.SetActive(false);
         gameOverCanvas.enabled = true;
     }
 
