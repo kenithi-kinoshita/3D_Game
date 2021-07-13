@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI countDownText;
     //　ゲームオーバーかどうか
     public bool GameOver { get; set; }
+    //　ゲームオーバー用Canvas
+    private Canvas gameOverCanvas;
+    //　次のシーンへ移動するボタン
+    private GameObject goToNextButtan;
+    // タイトルシーンへ移動するボタン
+    private GameObject goToTitleButton;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +34,10 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "Title")
         {
+            gameOverCanvas = GameObject.Find("GameOver").GetComponent<Canvas>();
+            goToNextButtan = gameOverCanvas.transform.Find("GoToNextButton").gameObject;
+            goToTitleButton = gameOverCanvas.transform.Find("GoToTitleButton").gameObject;
+            gameOverCanvas.enabled = false;
             countDownText = GameObject.Find("CountDownText").GetComponent<TextMeshProUGUI>();
             StartCoroutine(CountDown());
         }
@@ -65,18 +75,48 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //　ゲームクリア時に実行する
     public void ClearGame()
     {
         GameOver = true;
+        gameManagementData.StageNum++;
+        if (gameManagementData.StageNum < SceneManager.sceneCountInBuildSettings)
+        {
+            goToTitleButton.SetActive(false);
+        }
+        else
+        {
+            goToNextButtan.SetActive(false);
+        }
+        gameOverCanvas.enabled = true;
     }
 
     //　ゲームをクリア出来なかった時に実行する
     public void EndGame()
     {
         GameOver = true;
+        goToNextButtan.SetActive(false);
+        gameOverCanvas.enabled = true;
+    }
+
+    //　次のシーンへ移動
+    public void GoToNextScene()
+    {
+        if (gameManagementData.StageNum < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene("Stage" + gameManagementData.StageNum);
+        }
+        else
+        {
+            SceneManager.LoadScene("Title");
+        }
+    }
+    //　タイトルシーンへ移動
+    public void GoToTitleScene()
+    {
+        SceneManager.LoadScene("Title");
     }
 }

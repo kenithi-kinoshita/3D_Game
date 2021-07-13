@@ -12,7 +12,7 @@ public class GameOverArea : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();   
     }
 
-    //　何らかの古来だが侵入してきら実行
+    //　何らかのコライダが侵入してきら実行
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
