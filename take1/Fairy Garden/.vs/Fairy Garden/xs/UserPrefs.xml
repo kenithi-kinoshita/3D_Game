@@ -1,14 +1,7 @@
 ﻿<Properties StartupConfiguration="{4C732607-861A-ED87-131A-0F58E548D4B4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Standard Assets/Effects/ImageEffects/Scripts/DepthOfField.cs">
     <Files>
-      <File FileName="Assets/Scripts/CannonRotationScript.cs" Line="34" Column="42" />
-      <File FileName="Assets/Scripts/FireBulletScript.cs" />
-      <File FileName="Assets/Scripts/PlayerController.cs" />
-      <File FileName="Assets/Scripts/PauseScript.cs" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="17" Column="26" />
-      <File FileName="Assets/Scripts/GameManagementData.cs" />
-      <File FileName="Assets/Scripts/GoalArea.cs" />
-      <File FileName="Assets/Scripts/DataProcessingScript.cs" />
+      <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/DepthOfField.cs" Line="343" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
