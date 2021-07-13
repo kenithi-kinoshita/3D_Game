@@ -1,9 +1,5 @@
 ﻿<Properties StartupConfiguration="{4C732607-861A-ED87-131A-0F58E548D4B4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Standard Assets/Effects/ImageEffects/Scripts/DepthOfField.cs">
-    <Files>
-      <File FileName="Assets/Standard Assets/Effects/ImageEffects/Scripts/DepthOfField.cs" Line="343" Column="14" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fe2ae1b8-a9ae-4ae5-803c-adf94e0154f7" />
