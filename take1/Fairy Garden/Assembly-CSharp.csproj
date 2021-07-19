@@ -83,6 +83,8 @@
     <Compile Include="Assets/Scripts/GameManagementData.cs" />
     <Compile Include="Assets/Scripts/CannonRotationScript.cs" />
     <Compile Include="Assets/Scripts/MoveEnemy.cs" />
+    <Compile Include="Assets/Scripts/SetPosition.cs" />
+    <Compile Include="Assets/Scripts/SearcCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
